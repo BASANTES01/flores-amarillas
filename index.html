@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="img/flowers.png" type="image/x-icon" />
+  <title>Flowers</title>
+
+  <style>
+    /* FLORES CAYENDO */
+    .flower-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .flower {
+      position: absolute;
+      top: -100px;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      opacity: 0.9;
+      user-select: none;
+      will-change: transform;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="greetings">
+    <span>P</span>
+    <span>A</span>
+    <span>R</span>
+    <span>A</span>
+  </div>
+    <div class="greetings">
+    <span>M</span>
+    <span>I</span>
+  </div>
+  <div class="greetings">
+    <span>C</span>
+    <span>H</span>
+    <span>I</span>
+    <span>Q</span>
+    <span>U</span>
+    <span>I</span>
+    <span>T</span>
+    <span>A</span>
+  </div>
+  <div class="description">
+    <span>ESTE DETALLITO ES PARA TI EN ESTE DIA TAN ESPECIAL SE QUE NO ES MUCHO ASI COMO TUS PRETENCIENTES :)</span>
+  </div>
+  <div class="button">
+    <button class="botones">
+      <a href="flower.html" style="color: #ffffff;">Aqui mi chquita </a>
+    </button>
+  </div>
+
+  <!-- Flores cayendo en el fondo -->
+  <div class="flower-container" id="flower-container">
+    <!-- Las flores se generan con JS -->
+  </div>
+
+  <script>
+    const flowerContainer = document.getElementById('flower-container');
+    const flowerImages = [
+      'img/flowers.png',
+      'img/flower-white.png',
+      'img/flower-pink.png',
+    ];
+    const numberOfFlowers = 30;
+
+    for (let i = 0; i < numberOfFlowers; i++) {
+      const flower = document.createElement('img');
+      flower.classList.add('flower');
+      flower.src = flowerImages[Math.floor(Math.random() * flowerImages.length)];
+      flower.style.left = Math.random() * 90 + 5 + '%'; // entre 5% y 95%
+      flower.style.width = 30 + Math.random() * 20 + 'px'; // tamaño entre 30 y 50 px
+
+      const duration = 5 + Math.random() * 5; // duración 5-10 seg
+      flower.style.animationDuration = duration + 's';
+
+      flower.style.animationDelay = (Math.random() * duration) + 's';
+
+      flowerContainer.appendChild(flower);
+    }
+  </script>
+</body>
+
+</html>
